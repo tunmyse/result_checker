@@ -7,9 +7,11 @@
             "email": "akinsolatunmise@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "php": "^5.4.0|^7.0"
+    },
     "require-dev": {
-        "phpunit/phpunit": "^7.4"
+        "phpunit/phpunit": "5.*"
     },
     "autoload": {
         "psr-4": {
