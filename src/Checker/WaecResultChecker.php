@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Tunmyse\ResultChecker\Checker;
+namespace ResultChecker\Checker;
 
-use Tunmyse\ResultChecker\ResultChecker;
+use ResultChecker\ResultChecker;
 
 /**
  * Description of ResultChecker

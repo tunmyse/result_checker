@@ -16,12 +16,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Tunmyse\\ResultChecker\\": "src/"
+            "ResultChecker\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tunmyse\\ResultChecker\\Tests\\": "tests/"
+            "ResultChecker\\Tests\\": "tests/"
         }
     },
     "scripts": {

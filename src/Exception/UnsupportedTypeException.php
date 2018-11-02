@@ -1,6 +1,6 @@
 <?php
 
-namespace Tunmyse\ResultChecker\Exception;
+namespace ResultChecker\Exception;
 
 use RuntimeException;
 

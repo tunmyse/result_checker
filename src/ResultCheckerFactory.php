@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Tunmyse\ResultChecker;
+namespace ResultChecker;
 
 use Goutte\Client;
-use Tunmyse\ResultChecker\Checker\JambResultChecker;
-use Tunmyse\ResultChecker\Checker\NabtebResultChecker;
-use Tunmyse\ResultChecker\Checker\NecoResultChecker;
-use Tunmyse\ResultChecker\Checker\WaecResultChecker;
-use Tunmyse\ResultChecker\Exception\InvalidArgumentException;
-use Tunmyse\ResultChecker\Exception\UnsupportedTypeException;
-use Tunmyse\ResultChecker\ResultCheckerInterface;
+use ResultChecker\Checker\JambResultChecker;
+use ResultChecker\Checker\NabtebResultChecker;
+use ResultChecker\Checker\NecoResultChecker;
+use ResultChecker\Checker\WaecResultChecker;
+use ResultChecker\Exception\InvalidArgumentException;
+use ResultChecker\Exception\UnsupportedTypeException;
+use ResultChecker\ResultCheckerInterface;
 
 /**
  * Description of ResultCheckerFactory

@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Tunmyse\ResultChecker\Tests;
+namespace ResultChecker\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\BrowserKit\Client;
-use Tunmyse\ResultChecker\Exception\InvalidArgumentException;
-use Tunmyse\ResultChecker\Exception\UnsupportedTypeException;
-use Tunmyse\ResultChecker\ResultCheckerFactory;
-use Tunmyse\ResultChecker\ResultCheckerInterface;
+use ResultChecker\Exception\InvalidArgumentException;
+use ResultChecker\Exception\UnsupportedTypeException;
+use ResultChecker\ResultCheckerFactory;
+use ResultChecker\ResultCheckerInterface;
 
 class ResultCheckerFactoryTest extends TestCase {    
     
@@ -120,7 +120,7 @@ class ResultCheckerFactoryTest extends TestCase {
     }
     
     private function getMockChecker($typeCount, $supportCount, $returnMap) {
-        $checker = $this->createMock('Tunmyse\ResultChecker\ResultCheckerInterface');        
+        $checker = $this->createMock('ResultChecker\ResultCheckerInterface');        
         $checker->expects($this->exactly($typeCount))->method('getType')->willReturn($returnMap[0][0]);
         $checker->expects($this->exactly($supportCount))->method('supports')->willReturnMap($returnMap);
         

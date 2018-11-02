@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Tunmyse\ResultChecker\Exception;
+namespace ResultChecker\Exception;
 
 /**
  * @author Oluwatunmise
