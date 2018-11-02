@@ -76,5 +76,5 @@ abstract class ResultChecker implements ResultCheckerInterface {
      * 
      * @return type Description
      */
-    abstract protected function parseRespose();
+    abstract protected function parseResponse();
 }

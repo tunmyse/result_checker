@@ -26,7 +26,7 @@ class WaecResultChecker extends ResultChecker {
      */
     protected $type = 'waec';
 
-    protected function parseRespose() {
+    protected function parseResponse() {
         
     }
 

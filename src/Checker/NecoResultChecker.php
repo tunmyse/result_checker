@@ -26,7 +26,7 @@ class NecoResultChecker extends ResultChecker {
      */
     protected $type = 'neco';
 
-    protected function parseRespose() {
+    protected function parseResponse() {
         
     }
 

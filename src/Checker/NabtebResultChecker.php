@@ -26,7 +26,7 @@ class NabtebResultChecker extends ResultChecker {
      */
     protected $type = 'nabteb';
 
-    protected function parseRespose() {
+    protected function parseResponse() {
         
     }
 

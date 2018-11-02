@@ -26,7 +26,7 @@ class JambResultChecker extends ResultChecker {
      */
     protected $type = 'jamb';
 
-    protected function parseRespose() {
+    protected function parseResponse() {
         
     }
 
