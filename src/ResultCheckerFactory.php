@@ -11,13 +11,14 @@
 
 namespace Tunmyse\ResultChecker;
 
+use Goutte\Client;
+use Tunmyse\ResultChecker\Checker\JambResultChecker;
+use Tunmyse\ResultChecker\Checker\NabtebResultChecker;
+use Tunmyse\ResultChecker\Checker\NecoResultChecker;
+use Tunmyse\ResultChecker\Checker\WaecResultChecker;
 use Tunmyse\ResultChecker\Exception\InvalidArgumentException;
 use Tunmyse\ResultChecker\Exception\UnsupportedTypeException;
 use Tunmyse\ResultChecker\ResultCheckerInterface;
-use Tunmyse\ResultChecker\Checker\WaecResultChecker;
-use Tunmyse\ResultChecker\Checker\NecoResultChecker;
-use Tunmyse\ResultChecker\Checker\JambResultChecker;
-use Tunmyse\ResultChecker\Checker\NabtebResultChecker;
 
 /**
  * Description of ResultCheckerFactory
@@ -27,10 +28,11 @@ use Tunmyse\ResultChecker\Checker\NabtebResultChecker;
 class ResultCheckerFactory {
     
     public function __construct() {
-        $this->checkers[] = new WaecResultChecker;
-        $this->checkers[] = new NecoResultChecker;
-        $this->checkers[] = new JambResultChecker;
-        $this->checkers[] = new NabtebResultChecker;
+        $client = new Client();
+        $this->checkers[] = new WaecResultChecker($client);
+        $this->checkers[] = new NecoResultChecker($client);
+        $this->checkers[] = new JambResultChecker($client);
+        $this->checkers[] = new NabtebResultChecker($client);
     }
 
     /**

@@ -12,7 +12,7 @@
 namespace Tunmyse\ResultChecker\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Tunmyse\ResultChecker\Checker\WaecResultChecker;
+use Symfony\Component\BrowserKit\Client;
 use Tunmyse\ResultChecker\Exception\InvalidArgumentException;
 use Tunmyse\ResultChecker\Exception\UnsupportedTypeException;
 use Tunmyse\ResultChecker\ResultCheckerFactory;
@@ -21,12 +21,24 @@ use Tunmyse\ResultChecker\ResultCheckerInterface;
 class ResultCheckerFactoryTest extends TestCase {    
     
     /**
+     *
+     * @var Client 
+     */
+    private $client;
+    
+    /**
+     * Set up function
+     */
+    public function setUp() {
+        $this->client = $this->getMockForAbstractClass(Client::class);
+    }
+    
+    /**
      * @test
      * @dataProvider invalidTypeProvider
      */
     public function checksThatTypeIsValid($type) {
-        $factory = new ResultCheckerFactory;
-               
+        $factory = new ResultCheckerFactory;               
         $this->expectException(InvalidArgumentException::class);
         $factory->getResultChecker($type);
     }
@@ -36,10 +48,7 @@ class ResultCheckerFactoryTest extends TestCase {
      */
     public function returnsValidCheckerInstance() {
         $type = 'WAEC';
-        $testChecker = new WaecResultChecker();
         $factory = new ResultCheckerFactory;
-        
-        $factory->addResultChecker($testChecker);
         $resultChecker = $factory->getResultChecker($type);
         $this->assertInstanceOf(ResultCheckerInterface::class, $resultChecker);
     }
@@ -49,10 +58,7 @@ class ResultCheckerFactoryTest extends TestCase {
      */
     public function throwsExceptionForUnsupportedExamType() {
         $type = 'GMAT';
-        $testChecker = new WaecResultChecker();
-        $factory = new ResultCheckerFactory;
-        
-        $factory->addResultChecker($testChecker);        
+        $factory = new ResultCheckerFactory;   
         $this->expectException(UnsupportedTypeException::class);
         $factory->getResultChecker($type);
     }
@@ -89,6 +95,20 @@ class ResultCheckerFactoryTest extends TestCase {
      * @test
      */
     public function isInitializedWithDefaultCheckers() {
+        $factory = new ResultCheckerFactory;
+        $defaultType = ['WAEC', 'NECO', 'NABTEB', 'JAMB'];
+        
+        foreach($defaultType as $type) {   
+            $checker = $factory->getResultChecker($type); 
+            $this->assertSame(strtolower($type), $checker->getType());
+        }
+        
+    }
+    
+    /**
+     * @test
+     */
+    public function passesRequestClientToDefaultCheckers() {
         $factory = new ResultCheckerFactory;
         $defaultType = ['WAEC', 'NECO', 'NABTEB', 'JAMB'];
         

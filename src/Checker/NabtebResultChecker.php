@@ -11,38 +11,27 @@
 
 namespace Tunmyse\ResultChecker\Checker;
 
-use Tunmyse\ResultChecker\ResultCheckerInterface;
+use Tunmyse\ResultChecker\ResultChecker;
 
 /**
  * Description of ResultChecker
  *
  * @author Oluwatunmise
  */
-class NabtebResultChecker implements ResultCheckerInterface {
+class NabtebResultChecker extends ResultChecker {
     
     /**
      *
      * @var string 
      */
-    private $type = 'nabteb';
-    
-    /**
-     * 
-     * @return string
-     */
-    public function getType() {
-        return $this->type;
-    }
-    
-    /**
-     * 
-     * @
-     */
-    public function supports($type) {
-        if(trim(strtolower($type)) == $this->getType())
-            return true;
+    protected $type = 'nabteb';
+
+    protected function parseRespose() {
         
-        return false;
+    }
+
+    protected function validate(array $data) {
+        
     }
 
 }

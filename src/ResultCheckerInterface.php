@@ -41,5 +41,5 @@ interface ResultCheckerInterface {
      *
      * @return ResultInterface 
      */
-    public function check($data);
+    public function getResult(array $data);
 }

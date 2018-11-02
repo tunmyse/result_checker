@@ -11,38 +11,26 @@
 
 namespace Tunmyse\ResultChecker\Checker;
 
-use Tunmyse\ResultChecker\ResultCheckerInterface;
+use Tunmyse\ResultChecker\ResultChecker;
 
 /**
  * Description of ResultChecker
  *
  * @author Oluwatunmise
  */
-class JambResultChecker implements ResultCheckerInterface {
+class JambResultChecker extends ResultChecker {
     
     /**
-     *
+     * 
      * @var string 
      */
-    private $type = 'jamb';
-    
-    /**
-     * 
-     * @return string
-     */
-    public function getType() {
-        return $this->type;
-    }
-    
-    /**
-     * 
-     * @
-     */
-    public function supports($type) {
-        if(trim(strtolower($type)) == $this->getType())
-            return true;
+    protected $type = 'jamb';
+
+    protected function parseRespose() {
         
-        return false;
     }
 
+    protected function validate(array $data) {
+    
+    }
 }

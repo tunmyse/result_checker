@@ -11,38 +11,26 @@
 
 namespace Tunmyse\ResultChecker\Checker;
 
-use Tunmyse\ResultChecker\ResultCheckerInterface;
+use Tunmyse\ResultChecker\ResultChecker;
 
 /**
  * Description of ResultChecker
  *
  * @author Oluwatunmise
  */
-class NecoResultChecker implements ResultCheckerInterface {
+class NecoResultChecker extends ResultChecker {
     
     /**
      *
      * @var string 
      */
-    private $type = 'neco';
-    
-    /**
-     * 
-     * @return string
-     */
-    public function getType() {
-        return $this->type;
-    }
-    
-    /**
-     * 
-     * @
-     */
-    public function supports($type) {
-        if(trim(strtolower($type)) == $this->getType())
-            return true;
+    protected $type = 'neco';
+
+    protected function parseRespose() {
         
-        return false;
     }
 
+    protected function validate(array $data) {
+    
+    }
 }
