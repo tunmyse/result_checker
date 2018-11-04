@@ -12,6 +12,8 @@
 namespace ResultChecker\Checker;
 
 use ResultChecker\ResultChecker;
+use Symfony\Component\BrowserKit\Client;
+use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Description of ResultChecker
@@ -20,17 +22,15 @@ use ResultChecker\ResultChecker;
  */
 class NabtebResultChecker extends ResultChecker {
     
-    /**
-     *
-     * @var string 
-     */
-    protected $type = 'nabteb';
+    public function __construct(Client $client) {
+        parent::__construct($client, 'nabteb', []);
+    }
 
-    protected function parseResponse() {
+    protected function parseResponse(Crawler $crawler) {
         
     }
 
-    protected function validate(array $data) {
+    protected function getRequestInfo(): array {
         
     }
 
