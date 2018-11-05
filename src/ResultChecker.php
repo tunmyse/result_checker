@@ -45,8 +45,7 @@ abstract class ResultChecker implements ResultCheckerInterface {
     public function __construct(Client $client, $type, array $requiredFields) {
         $this->client = $client;
         $this->type = $type;
-        $this->requiredFields = $requiredFields;
-        
+        $this->requiredFields = $requiredFields;        
     } 
     
     /**
@@ -54,13 +53,34 @@ abstract class ResultChecker implements ResultCheckerInterface {
      */
     public function getResult(array $data) {
         $this->validate($data);
-        $request = $this->getRequestInfo();
+        $requestInfo = $this->getRequestInfo();
         
+        $diffArray = array_diff(['url', 'method', 'params'], array_keys($requestInfo));
+        
+        if(count($diffArray) > 0) {
+            throw new MissingFieldException(sprintf('The parameter(s) "%s" are required but are missing!', implode('", "', $diffArray)));
+        }
+        
+        if(!filter_var($requestInfo['url'], FILTER_VALIDATE_URL)) {
+            throw new InvalidArgumentException('The parameter "url" in not a valid url!');
+        }
+        
+        if(!isset($requestInfo['method']) || !in_array(strtolower($requestInfo['method']), ['get', 'post'])) {
+            throw new InvalidArgumentException('The parameter "method" must be a valid HTTP method and either of ["GET", "POST"]!');
+        }
+        
+        if(!is_array($requestInfo['params'])) {
+            throw new InvalidArgumentException('The parameter "params" must be an array!');
+        }        
+        
+        $crawler = $this->client->request($requestInfo['method'], $requestInfo['url'], $requestInfo['params']);
+        
+        return $this->parseResponse($crawler);
     }
     
     /**
      * {@inheritDoc}
-     */
+     */ 
     public function getType() {
         return $this->type;
     }
