@@ -53,7 +53,7 @@ abstract class ResultChecker implements ResultCheckerInterface {
      */
     public function getResult(array $data) {
         $this->validate($data);
-        $requestInfo = $this->getRequestInfo();
+        $requestInfo = $this->getRequestInfo($data);
         
         $diffArray = array_diff(['url', 'method', 'params'], array_keys($requestInfo));
         
@@ -129,11 +129,13 @@ abstract class ResultChecker implements ResultCheckerInterface {
     }
     
     /**
-     * Request information
+     * Returns the information required to make result request
+     * 
+     * @param array $requestData 
      * 
      * @return array Array containing request information
      */
-    abstract protected function getRequestInfo();
+    abstract protected function getRequestInfo(array $requestData);
     
     /**
      * Parse response from examination body

@@ -129,7 +129,32 @@ class ResultCheckerTest extends TestCase {
         $return = $this->checker->getResult($this->validData);
         $this->assertInstanceOf(ResultInterface::class, $return);
     }
+      
+    /**
+     * @test
+     */
+    public function callsRequestInfoWithRequestData() {
+        $requestInfo = ['url' => 'https://www.waecdirect.org', 'method' => 'POST', 'params' => []];
+        $crawler = $this->createMock(Crawler::class);
+        $result = $this->createMock(ResultInterface::class);
         
+        $this->checker
+                ->expects($this->once())
+                ->method('getRequestInfo')
+                ->with($this->validData)
+                ->willReturn($requestInfo);
+        
+        $this->client
+                ->method('request')
+                ->willReturn($crawler);
+        
+        $this->checker
+                ->method('parseResponse')
+                ->willReturn($result);
+        
+        $this->checker->getResult($this->validData);
+    }
+    
     /**
      * @test
      * @dataProvider invalidRequestInfoDataProvider
