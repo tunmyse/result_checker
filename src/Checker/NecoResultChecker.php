@@ -30,7 +30,7 @@ class NecoResultChecker extends ResultChecker {
         
     }
         
-    protected function getRequestInfo(): array {
+    protected function getRequestInfo($requestData){
         
     }
 }
