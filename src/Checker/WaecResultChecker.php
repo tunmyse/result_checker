@@ -23,14 +23,34 @@ use Symfony\Component\DomCrawler\Crawler;
 class WaecResultChecker extends ResultChecker {
         
     public function __construct(Client $client) {
-        parent::__construct($client, 'waec', []);
+        $requiredFields = [
+                            'exam_num' => 'int',
+                            'exam_year' => 'int',
+                            'exam_type' => 'string',
+                            'card_pin' => 'int',
+                            'card_serial' => 'string'
+                        ];
+        
+        parent::__construct($client, 'waec', $requiredFields);
     }    
 
     protected function parseResponse(Crawler $crawler) {
         
     }
     
-    protected function getRequestInfo(): array {
+    protected function getRequestInfo($requestData) {
+        $reqData = [
+            'ExamNumber' => $requestData['exam_num'],
+            'ExamYear' => $requestData['exam_year'],
+            'ExamType' => $requestData['exam_type'],
+            'serial' => $requestData['card_serial'],
+            'pin' => $requestData['card_pin']
+        ];
         
+        return [
+            'url' => 'https://www.waecdirect.org/DisplayResult.aspx',
+            'method' => 'GET',
+            'params' => $reqData 
+        ];
     }
 }
