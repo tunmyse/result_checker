@@ -41,6 +41,14 @@ class ResultCheckerFactory {
      */
     private $checkers = [];
     
+    /**
+     * Get the appropriate checker for the type specified
+     * 
+     * @param string $type
+     * @return ResultCheckerInterface
+     * @throws InvalidArgumentException
+     * @throws UnsupportedTypeException
+     */
     public function getResultChecker($type) {
         if(!is_string($type) || empty($type))
             throw new InvalidArgumentException("The value of 'type' must be a string and must not be empty!");
@@ -54,6 +62,11 @@ class ResultCheckerFactory {
         throw new UnsupportedTypeException(sprintf("The '%s' exam type does not have a registered checker!", $type));
     }    
     
+    /**
+     * Add a new result checker to the factory
+     * 
+     * @param ResultCheckerInterface $checker
+     */
     public function addResultChecker(ResultCheckerInterface $checker) {
         $this->checkers[] = $checker;
     }
