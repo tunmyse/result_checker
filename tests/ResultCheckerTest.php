@@ -117,7 +117,6 @@ class ResultCheckerTest extends TestCase {
         $this->client
                 ->expects($this->once())
                 ->method('request')
-                ->with($requestInfo['method'], $requestInfo['url'], $requestInfo['params'])
                 ->willReturn($crawler);
         
         $this->checker
