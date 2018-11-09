@@ -12,6 +12,8 @@
 namespace ResultChecker\Exception;
 
 /**
+ * Description of InvalidArgumentException
+ *
  * @author Oluwatunmise
  */
 class InvalidArgumentException extends \InvalidArgumentException

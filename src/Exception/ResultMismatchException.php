@@ -14,10 +14,10 @@ namespace ResultChecker\Exception;
 use RuntimeException;
 
 /**
- * Description of UnsupportedTypeException
+ * Description of ResultMismatchException
  *
  * @author Oluwatunmise Akinsola
  */
-class UnsupportedTypeException extends RuntimeException {
+class ResultMismatchException extends RuntimeException {
     
 }
