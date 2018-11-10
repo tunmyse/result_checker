@@ -25,6 +25,11 @@ use Symfony\Component\DomCrawler\Crawler;
 class WaecResultChecker extends ResultChecker {
     
     const OTHER_ERROR = 'other';
+    const INVALID_CARD = 'invalid_card';
+    const EXHAUSTED_CARD = 'exhausted_card';
+    const WRONG_EXAM_TYPE = 'wrong_exam_type';
+    const WRONG_EXAM_YEAR = 'wrong_exam_number';
+    const CARD_ALREADY_USED = 'card_already_used';
     
     /**
      * 
@@ -55,7 +60,7 @@ class WaecResultChecker extends ResultChecker {
         $candInfo = $this->getCandidateInfo();
         
         if($candInfo['examNumber'] != $this->requestData['exam_num']) {
-            throw new ResultMismatchException('The exam number submitted does not match the exam number received!');
+            throw new ResultMismatchException('The exam number submitted does not match the exam number result!');
         }
         
         return new WaecResult($candInfo, $this->getResultInfo());
@@ -91,9 +96,39 @@ class WaecResultChecker extends ResultChecker {
     private function getErrorInfo() {
         parse_str(parse_url($this->crawler->getUri(), PHP_URL_QUERY), $query);
         
+        $type = self::OTHER_ERROR;
+        
+        foreach(['invalid', 'usage', 'diet', 'already', 'checker'] as $search) {
+            if(stripos($query['errTitle'], $search) === false)
+                continue;
+            
+            switch($search) {
+                case 'invalid';
+                    $type = self::INVALID_CARD;
+                    break;
+                
+                case 'usage':
+                    $type = self::EXHAUSTED_CARD;
+                    break;
+                
+                case 'diet':
+                    $type = self::WRONG_EXAM_TYPE;
+                    break;
+                
+                case 'checker':
+                    $type = self::WRONG_EXAM_YEAR;
+                    break;
+                
+                case 'already':
+                    $type = self::CARD_ALREADY_USED;
+                    break;
+            }
+            
+            break;
+        }
         
         return [
-            'type' => self::OTHER_ERROR,
+            'type' => $type,
             'title' => $query['errTitle'],
             'message' => $query['errMsg']
         ];
