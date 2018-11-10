@@ -17,4 +17,17 @@ namespace ResultChecker;
  */
 interface ResultInterface {
     
+    /**
+     * Determine if the result response was an error response
+     * 
+     * @return boolean returns true if response is an error, false otherwise
+     */
+    public function hasError();
+    
+    /**
+     * Get the error type 
+     * 
+     * @return string returns the error type string, null otherwise
+     */
+    public function getErrorType();
 }
