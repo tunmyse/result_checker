@@ -41,7 +41,9 @@ class WaecResult implements ResultInterface {
     private $error;
     
     public function __construct($candidateInfo, $resultInfo, $errorInfo = null) {
-        $this->error = $errorInfo;
+        $this->error = $errorInfo;$candidateInfo;
+        $this->candidate = $candidateInfo;
+        $this->result = $resultInfo;
     }
     
     /**
@@ -59,6 +61,16 @@ class WaecResult implements ResultInterface {
             return $this->error['type'];
             
         return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray() {
+        return [
+            'candidate' => $this->candidate,
+            'result' => $this->result
+        ];
     }
 
 }

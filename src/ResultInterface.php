@@ -30,4 +30,12 @@ interface ResultInterface {
      * @return string returns the error type string, null otherwise
      */
     public function getErrorType();
+    
+    /**
+     * 
+     * Get all the information contained in this Result object
+     * 
+     * @return array An array containing the candidate and result information
+     */
+    public function toArray();
 }
