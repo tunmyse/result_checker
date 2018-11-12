@@ -176,7 +176,7 @@ class WaecResultChecker extends ResultChecker {
                     $name = trim($children->first()->text());
                     $value = trim($children->last()->text());
                     
-                    $resultInfo[] = [$name, $value];
+                    $resultInfo[] = ['subject' => $name, 'grade' => $value];
                 });        
         
         return $resultInfo;

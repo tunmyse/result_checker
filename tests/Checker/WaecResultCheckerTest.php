@@ -103,8 +103,9 @@ class WaecResultCheckerTest extends TestCase {
      */
     public function checksResultIsForCandidate() {  
         require 'waec_resp.php';
-        $crawler = new Crawler($waecTextWrongExamNumber, 'https://www.waecdirect.org/DisplayResult.aspx');
-                
+        $crawler = new Crawler($waecText, 'https://www.waecdirect.org/DisplayResult.aspx');
+        $this->validData['exam_num'] = '4310210059';
+        
         $this->client
                 ->expects($this->once())
                 ->method('request')               
@@ -144,22 +145,40 @@ class WaecResultCheckerTest extends TestCase {
         $this->assertInstanceOf(WaecResult::class, $result);
         
         return $result;
-    }
-    
+    }    
     
     /**
      * @test
      * @depends clone returnsValidResultType
      */
     public function validatesSuccessfulResult($result) {       
-             
-        $this->assertInstanceOf(WaecResult::class, $result);
-        
-        return $result;
+        $expectedResult = [
+                            'candidate' => [
+                                "examNumber" => "4310210052",
+                                "lastName" => "CHUKWU",
+                                "firstName" => "ERICK",
+                                "middleName" => "EMEKA",
+                                "period" => "MAY/JUNE",
+                                "type" => "WASSCE",
+                                "year" => "2011"
+                            ],
+                            'result' => [
+                                ['subject' => 'CHRISTIAN RELIGIOUS KNOWLEDGE','grade' => 'D7'],
+                                ['subject' => 'ECONOMICS','grade' => 'F9'],
+                                ['subject' => 'GOVERNMENT','grade' => 'C6'],
+                                ['subject' => 'LITERATURE IN ENGLISH','grade' => 'C5'],
+                                ['subject' => 'ENGLISH LANGUAGE','grade' => 'E8'],
+                                ['subject' => 'YORUBA LANGUAGE','grade' => 'C6'],
+                                ['subject' => 'MATHEMATICS','grade' => 'C6'],
+                                ['subject' => 'AGRICULTURAL SCIENCE','grade' => 'B3'],
+                                ['subject' => 'BIOLOGY','grade' => 'D7']
+                            ]
+                        ];
+        $this->assertSame($expectedResult, $result->toArray());
     }
     
     public function errorDataProvider() {
-        // TODO get error for new card wrong exam number
+        // TODO get error for new card, wrong exam number
         return [
             'other error' => [
                 'https://www.waecdirect.org/ResultError.aspx?errTitle=Null Candidate&errMsg=Please re-submit your exam details',
