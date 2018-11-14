@@ -2,6 +2,8 @@
 
 namespace ResultChecker\Result;
 
+use ResultChecker\Result\CandidateInterface;
+use ResultChecker\Result\ExaminationInformationInterface;
 use ResultChecker\ResultInterface;
 
 /*
@@ -18,7 +20,7 @@ use ResultChecker\ResultInterface;
  *
  * @author Oluwatunmise Akinsola
  */
-class WaecResult implements ResultInterface {
+class WaecResult implements ResultInterface, CandidateInterface, ExaminationInformationInterface {
             
     /**
      *
@@ -48,14 +50,56 @@ class WaecResult implements ResultInterface {
      * {@inheritDoc}
      */
     public function getExamYear() {
-        $this->candidate['year'];
+        return $this->candidate['year'];
     }
     
     /**
      * {@inheritDoc}
      */
     public function getResult() {
-        
+        return $this->result;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function getFirstName() {
+        return $this->candidate['firstName'];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getLastName() {
+        return $this->candidate['lastName'];        
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getMiddleName() {
+        return $this->candidate['middleName'];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCandidateNumber() {
+        return $this->getExamNumber();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getExamPeriod() {
+        return $this->candidate['period'];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getExamType() {        
+        return $this->candidate['type'];
     }
     
     /**
