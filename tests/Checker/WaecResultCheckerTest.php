@@ -14,6 +14,7 @@ namespace ResultChecker\Tests\Checker;
 use PHPUnit\Framework\TestCase;
 use ResultChecker\Checker\WaecResultChecker;
 use ResultChecker\Exception\ResultMismatchException;
+use ResultChecker\Exception\ResultProcessingException;
 use ResultChecker\Result\WaecResult;
 use Symfony\Component\BrowserKit\Client;
 use Symfony\Component\DomCrawler\Crawler;
@@ -75,6 +76,7 @@ class WaecResultCheckerTest extends TestCase {
                 ->with('GET', 'https://www.waecdirect.org/DisplayResult.aspx', $reqData)                
                 ->willReturn($crawler);
         
+        $this->expectException(ResultProcessingException::class);
         $this->checker->getResult($this->validData);                
     }
     
@@ -93,9 +95,12 @@ class WaecResultCheckerTest extends TestCase {
                 ->method('request')               
                 ->willReturn($crawler);
         
-        $result = $this->checker->getResult($this->validData);       
-        $this->assertTrue($result->hasError());    
-        $this->assertSame($errorType, $result->getErrorType());
+        try {
+            $this->checker->getResult($this->validData); 
+            $this->fail();
+        }catch (ResultProcessingException $ex) {
+            $this->assertSame($errorType, $ex->getType());
+        }
     }
     
     /**
@@ -123,17 +128,13 @@ class WaecResultCheckerTest extends TestCase {
         $realCrawler = new Crawler($waecText, 'https://www.waecdirect.org/DisplayResult.aspx');
                 
         $crawler = $this->createPartialMock(Crawler::class, ['filter', 'getUri']);
-        $crawler->expects($this->exactly(3))
+        $crawler->expects($this->once())
                 ->method('getUri')
-                ->willReturnOnConsecutiveCalls('https://www.waecdirect.org/ErrorResult.aspx?errTitle=Null Candidate&errMsg=Please re-submit your exam details', 
-                        'https://www.waecdirect.org/ErrorResult.aspx?errTitle=Null Candidate&errMsg=Please re-submit your exam details',
-                        'https://www.waecdirect.org/DisplayResult.aspx');
+                ->willReturn('https://www.waecdirect.org/DisplayResult.aspx');
            
         $this->client
                 ->method('request')               
                 ->willReturn($crawler);
-        
-        $this->assertInstanceOf(WaecResult::class, $this->checker->getResult($this->validData));
         
         $crawler->expects($this->exactly(2))
                 ->method('filter')
