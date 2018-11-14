@@ -12,6 +12,7 @@
 namespace ResultChecker\Checker;
 
 use ResultChecker\Exception\ResultMismatchException;
+use ResultChecker\Exception\ResultProcessingException;
 use ResultChecker\Result\WaecResult;
 use ResultChecker\ResultChecker;
 use Symfony\Component\BrowserKit\Client;
@@ -54,7 +55,7 @@ class WaecResultChecker extends ResultChecker {
         
         if($this->hasError()) {
             $errorInfo = $this->getErrorInfo();
-            return new WaecResult(null, null, $errorInfo);
+            throw new ResultProcessingException($errorInfo);
         }    
         
         $candInfo = $this->getCandidateInfo();

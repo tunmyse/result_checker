@@ -11,6 +11,8 @@
 
 namespace ResultChecker;
 
+use ResultChecker\Exception\ErrorResultException;
+
 /**
  *
  * @author Oluwatunmise Akinsola
@@ -18,21 +20,28 @@ namespace ResultChecker;
 interface ResultInterface {
     
     /**
-     * Determine if the result response was an error response
+     * Get the subjects and corresponding grade information in the result
      * 
-     * @return boolean returns true if response is an error, false otherwise
+     * @return array returns array containing subject and grade.
+     * @throws ErrorResultException
      */
-    public function hasError();
+    public function getResult();
     
     /**
-     * Get the error type 
+     * Get the exam number of the exam candidate
      * 
-     * @return string returns the error type string, null otherwise
+     * @return string exam number of the candidate.
      */
-    public function getErrorType();
+    public function getExamNumber();
     
     /**
+     * Get the year the candidate wrote the exam 
      * 
+     * @return int The exam year.
+     */
+    public function getExamYear();
+    
+    /** 
      * Get all the information contained in this Result object
      * 
      * @return array An array containing the candidate and result information

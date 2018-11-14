@@ -40,6 +40,7 @@ interface ResultCheckerInterface {
      * @param array data Examination information
      *
      * @return ResultInterface 
+     * @thows ResultProcessingException
      */
     public function getResult(array $data);
 }

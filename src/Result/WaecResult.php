@@ -19,9 +19,7 @@ use ResultChecker\ResultInterface;
  * @author Oluwatunmise Akinsola
  */
 class WaecResult implements ResultInterface {
-    
-    
-    
+            
     /**
      *
      * @var array 
@@ -34,35 +32,32 @@ class WaecResult implements ResultInterface {
      */
     private $result;
     
-    /**
-     *
-     * @var array
-     */
-    private $error;
-    
-    public function __construct($candidateInfo, $resultInfo, $errorInfo = null) {
-        $this->error = $errorInfo;$candidateInfo;
+    public function __construct($candidateInfo, $resultInfo) {
         $this->candidate = $candidateInfo;
         $this->result = $resultInfo;
+    }    
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getExamNumber(){
+        return $this->candidate['examNumber'];
     }
     
     /**
      * {@inheritDoc}
      */
-    public function hasError() {
-        return !empty($this->error) || isset($this->error);
+    public function getExamYear() {
+        $this->candidate['year'];
     }
-
+    
     /**
      * {@inheritDoc}
      */
-    public function getErrorType(): string {
-        if($this->hasError())
-            return $this->error['type'];
-            
-        return null;
+    public function getResult() {
+        
     }
-
+    
     /**
      * {@inheritDoc}
      */
@@ -70,7 +65,7 @@ class WaecResult implements ResultInterface {
         return [
             'candidate' => $this->candidate,
             'result' => $this->result
-        ];
+        ];      
     }
 
 }
