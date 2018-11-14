@@ -49,7 +49,7 @@ abstract class ResultChecker implements ResultCheckerInterface {
     } 
     
     /**
-     * 
+     * {@inheritDoc}
      */
     public function getResult(array $data) {
         $this->validate($data);
@@ -73,10 +73,10 @@ abstract class ResultChecker implements ResultCheckerInterface {
             throw new InvalidArgumentException('The parameter "params" must be an array!');
         }        
         
-        $crawler = $this->client->request($requestInfo['method'], $requestInfo['url'], $requestInfo['params']);
+        $crawler = $this->makeRequest($this->client, $requestInfo);
         
         return $this->parseResponse($crawler);
-    }
+    }    
     
     /**
      * {@inheritDoc}
@@ -126,6 +126,17 @@ abstract class ResultChecker implements ResultCheckerInterface {
                     break;
             }
         }
+    }
+        
+    /**
+     * Make the request to get the result data
+     * 
+     * @param Client $client Description
+     * @param array $requestInfo Description
+     * @return Crawler Crawler object containing the exam response 
+     */
+    protected function makeRequest(Client $client, $requestInfo) {             
+        return $client->request($requestInfo['method'], $requestInfo['url'], $requestInfo['params']);
     }
     
     /**
