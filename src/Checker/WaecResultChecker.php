@@ -61,7 +61,7 @@ class WaecResultChecker extends ResultChecker {
         $candInfo = $this->getCandidateInfo();
         
         if($candInfo['examNumber'] != $this->requestData['exam_num']) {
-            throw new ResultMismatchException('The exam number submitted does not match the exam number result!');
+            throw new ResultMismatchException('The exam number submitted does not match the exam number in the result!');
         }
         
         return new WaecResult($candInfo, $this->getResultInfo());
@@ -79,7 +79,8 @@ class WaecResultChecker extends ResultChecker {
         ];
         
         return [
-            'url' => 'https://www.waecdirect.org/DisplayResult.aspx',
+            // add GET params to the url string because Goutte client does not
+            'url' => 'https://www.waecdirect.org/DisplayResult.aspx?'. http_build_query($reqData),
             'method' => 'GET',
             'params' => $reqData 
         ];

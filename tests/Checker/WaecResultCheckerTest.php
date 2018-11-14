@@ -73,7 +73,7 @@ class WaecResultCheckerTest extends TestCase {
         $this->client
                 ->expects($this->once())
                 ->method('request')
-                ->with('GET', 'https://www.waecdirect.org/DisplayResult.aspx', $reqData)                
+                ->with('GET', 'https://www.waecdirect.org/DisplayResult.aspx?'. http_build_query($reqData), $reqData)                
                 ->willReturn($crawler);
         
         $this->expectException(ResultProcessingException::class);
