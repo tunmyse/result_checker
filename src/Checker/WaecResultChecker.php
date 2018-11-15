@@ -57,7 +57,7 @@ class WaecResultChecker extends ResultChecker {
             $errorInfo = $this->getErrorInfo();
             throw new ResultProcessingException($errorInfo);
         }    
-        
+        var_dump($this->crawler);
         $candInfo = $this->getCandidateInfo();
         
         if($candInfo['examNumber'] != $this->requestData['exam_num']) {
@@ -138,8 +138,7 @@ class WaecResultChecker extends ResultChecker {
     
     private function getCandidateInfo() {
         $candInfo = [];
-        $this->crawler->filter('#tbCandidInfo tbody')
-                ->children()
+        $this->crawler->filter('#tbCandidInfo tr')
                 ->each(function(Crawler $crawler) use (&$candInfo) {
                     $children = $crawler->children();
                     $name = trim($children->first()->text());
@@ -171,8 +170,7 @@ class WaecResultChecker extends ResultChecker {
     
     private function getResultInfo() {
         $resultInfo = [];
-        $this->crawler->filter('#tbSubjectGrades tbody')
-                ->children()
+        $this->crawler->filter('#tbSubjectGrades tr')
                 ->each(function(Crawler $crawler) use (&$resultInfo) {
                     $children = $crawler->children();
                     $name = trim($children->first()->text());

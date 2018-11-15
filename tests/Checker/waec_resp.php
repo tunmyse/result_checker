@@ -98,7 +98,7 @@ $(document).on("contextmenu",function(e){
 	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="8EC363C2">
 </div>
         <table width="500" height="580" border="0" cellspacing="1" cellpadding="0" align="left">
-      <tbody><tr>
+      <tr>
                 <td width="100%" align="left" valign="middle">
                     <img src="./valid_result_files/top_small.jpg" alt="WAEC logo" width="480" height="66" hspace="0" vspace="0" border="0" align="left">                </td>
           </tr>
@@ -111,13 +111,13 @@ $(document).on("contextmenu",function(e){
               <td height="60"> 
                 <div id="dvmodule" style="display:"> 
                  <table style="width: 100%" id="Table1">
-                    <tbody><tr>
+                    <tr>
                        <td align="center" valign="top"><span class="style20"></span>
                            
                          </td>
                       </tr>                 
                       
-                    </tbody></table>
+                    </table>
                </div>
               </td>
             </tr>
@@ -130,14 +130,14 @@ $(document).on("contextmenu",function(e){
                 <td width="100%" height="90%" colspan="2" valign="top" class="purple">
                     <br>
                     <table width="94%" height="10%" border="0" cellspacing="1" cellpadding="4" align="center" class="nightblue">
-                        <tbody><tr>
+                        <tr>
                             <th colspan="2" class="result" style="width: 450px">
                                 Candidate Information</th>
                         </tr>
                         <tr>
                             <td>
                                 <table id="tbCandidInfo" class="result" style="width: 100%">
-	<tbody><tr style="background-color:#E9D772;color:#000000;font-family:Arial, Verdana, Sans-serrif;font-size:9pt;font-weight:bold;vertical-align:top;">
+	<tr style="background-color:#E9D772;color:#000000;font-family:Arial, Verdana, Sans-serrif;font-size:9pt;font-weight:bold;vertical-align:top;">
 		<td align="left" width="40%">Examination Number</td>
 		<td align="left" width="60%">4310210052</td>
 	</tr>
@@ -153,19 +153,19 @@ $(document).on("contextmenu",function(e){
 		<td align="left" width="40%">Centre</td>
 		<td align="left" width="60%">Anglican Grammar School, Agbirigidi</td>
 	</tr>
-</tbody></table>
+</table>
                             </td>
                         </tr>
-                    </tbody></table>
+                    </table>
                     <table width="94%" height="10%" border="0" cellspacing="1" cellpadding="4" align="center" class="nightblue">
-                        <tbody><tr>
+                        <tr>
                             <th colspan="2" class="result" style="width: 450px">
                                 Subject Grades</th>
                         </tr>
                         <tr>
                             <td>
                                 <table id="tbSubjectGrades" class="result" style="width: 100%">
-	<tbody><tr style="background-color:#E9D772;color:#000000;font-family:Arial, Verdana, Sans-serrif;font-size:9pt;font-weight:bold;vertical-align:top;">
+	<tr style="background-color:#E9D772;color:#000000;font-family:Arial, Verdana, Sans-serrif;font-size:9pt;font-weight:bold;vertical-align:top;">
 		<td align="left" width="40%">CHRISTIAN RELIGIOUS KNOWLEDGE</td>
 		<td align="left" width="60%">D7</td>
 	</tr>
@@ -201,26 +201,26 @@ $(document).on("contextmenu",function(e){
 		<td align="left" width="40%">BIOLOGY</td>
 		<td align="left" width="60%">D7</td>
 	</tr>
-</tbody></table>
+</table>
                             </td>
                         </tr>
-                    </tbody></table>
+                    </table>
                     <table width="94%" height="10%" border="0" cellspacing="1" cellpadding="4" align="center" class="nightblue">
-                        <tbody><tr>
+                        <tr>
                             <th colspan="2" class="result" style="width: 450px">
                                 Card Information</th>
                         </tr>
                         <tr>
                             <td>
                                 <table id="tbCardInfo" class="result" style="width: 100%">
-	<tbody><tr style="background-color:#E9D772;color:#000000;font-family:Arial, Verdana, Sans-serrif;font-size:9pt;font-weight:bold;vertical-align:top;">
+	<tr style="background-color:#E9D772;color:#000000;font-family:Arial, Verdana, Sans-serrif;font-size:9pt;font-weight:bold;vertical-align:top;">
 		<td align="left" width="40%">Card Use</td>
 		<td align="left" width="60%">5 of 5</td>
 	</tr>
-</tbody></table>
+</table>
                             </td>
                         </tr>
-                    </tbody></table>                </td>
+                    </table>                </td>
             </tr>
             <tr>
                 <td colspan="2" style="text-align: center" class="result">
@@ -233,7 +233,7 @@ $(document).on("contextmenu",function(e){
                     <input type="submit" value="Close Window" class="button" onclick="window.close()"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="1" height="1"><param name="movie" value="cardauditor.swf"><param name="quality" value="high">
                         <embed src="images/cardauditor.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="639" height="82"></object></td>
             </tr>
-        </tbody></table>
+        </table>
 </form>
 
 
