@@ -57,7 +57,7 @@ class WaecResultChecker extends ResultChecker {
             $errorInfo = $this->getErrorInfo();
             throw new ResultProcessingException($errorInfo);
         }    
-        var_dump($this->crawler);
+        
         $candInfo = $this->getCandidateInfo();
         
         if($candInfo['examNumber'] != $this->requestData['exam_num']) {
