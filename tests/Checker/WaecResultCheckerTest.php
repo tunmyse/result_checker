@@ -138,8 +138,8 @@ class WaecResultCheckerTest extends TestCase {
         
         $crawler->expects($this->exactly(2))
                 ->method('filter')
-                ->withConsecutive(['#tbCandidInfo tr'], ['#tbSubjectGrades tr'])
-                ->willReturnOnConsecutiveCalls($realCrawler->filter('#tbCandidInfo tr'), $realCrawler->filter('#tbSubjectGrades tr'));
+                ->withConsecutive(['#tbCandidInfo > tr'], ['#tbSubjectGrades > tr'])
+                ->willReturnOnConsecutiveCalls($realCrawler->filter('#tbCandidInfo > tr'), $realCrawler->filter('#tbSubjectGrades > tr'));
         
         
         $result = $this->checker->getResult($this->validData);       

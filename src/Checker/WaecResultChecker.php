@@ -138,7 +138,7 @@ class WaecResultChecker extends ResultChecker {
     
     private function getCandidateInfo() {
         $candInfo = [];
-        $this->crawler->filter('#tbCandidInfo tr')
+        $this->crawler->filter('#tbCandidInfo > tr')
                 ->each(function(Crawler $crawler) use (&$candInfo) {
                     $children = $crawler->children();
                     $name = trim($children->first()->text());
@@ -170,7 +170,7 @@ class WaecResultChecker extends ResultChecker {
     
     private function getResultInfo() {
         $resultInfo = [];
-        $this->crawler->filter('#tbSubjectGrades tr')
+        $this->crawler->filter('#tbSubjectGrades > tr')
                 ->each(function(Crawler $crawler) use (&$resultInfo) {
                     $children = $crawler->children();
                     $name = trim($children->first()->text());
